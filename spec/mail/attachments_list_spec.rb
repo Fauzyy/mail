@@ -234,7 +234,7 @@ describe "reading emails with attachments" do
       expect(mail.attachments.length).to eq 1
     end
 
-    it "should use the content-type filename or name over the content-disposition filename" do
+    it "should use the content-disposition filename over the content-type name" do
       mail = Mail.read(fixture(File.join('emails', 'attachment_emails', 'attachment_content_disposition.eml')))
       expect(mail.attachments[0].filename).to eq 'hello.rb'
     end
