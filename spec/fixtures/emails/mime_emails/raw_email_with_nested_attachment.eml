@@ -31,9 +31,9 @@ Here is a test of an attachment via email.
 Content-Transfer-Encoding: base64
 Content-Type: image/png;
 	x-unix-mode=0644;
-	name=byo-ror-cover.png
+	name=truncated.png
 Content-Disposition: inline;
-	filename=truncated.png
+	filename=byo-ror-cover.png
 
 iVBORw0KGgoAAAANSUhEUgAAAKUAAADXCAYAAAB7wZEQAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAABd0RVh0Q3JlYXRpb24gVGltZQAxLzI1LzIwMDeD9CJVAAAAGHRFWHRT
