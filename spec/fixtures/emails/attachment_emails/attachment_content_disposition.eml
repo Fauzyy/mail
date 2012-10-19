@@ -17,10 +17,10 @@ Content-Type: text/plain;
 This is the first part.
 
 --Apple-Mail-13-196941151
-Content-Type: text/x-ruby-script; name="hello.rb"
+Content-Type: text/x-ruby-script; name="api.rb"
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
-	filename="api.rb"
+	filename="hello.rb"
 
 puts "Hello, world!"
 gets
