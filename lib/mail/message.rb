@@ -2046,7 +2046,15 @@ module Mail
         else
           if encoding = Encoding.find(charset) rescue nil
             body_text.force_encoding(encoding)
-            return body_text.encode(Encoding::UTF_8, :undef => :replace, :invalid => :replace, :replace => '')
+
+            # If the origin and destination encoding are the same (in this case UTF-8), Ruby 
+            # will ignore the call to encode. Therefore we have to check if the encoding is
+            # valid. If not, convert to an intermediary encoding and then back
+            if encoding.eql?(Encoding::UTF_8) && !body_text.valid_encoding?
+              body_text = body_text.encode(Encoding::UTF_16, :invalid => :replace, :undef => :replace, :replace => '')
+            end
+              
+            return body_text.encode(Encoding::UTF_8, :invalid => :replace, :undef => :replace, :replace => '')
           end
         end
       end
