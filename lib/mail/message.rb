@@ -2153,8 +2153,21 @@ module Mail
           return Iconv.conv("UTF-8//TRANSLIT//IGNORE", charset, body_text)
         else
           if encoding = Encoding.find(charset) rescue nil
+            options = {
+              :invalid => :replace, 
+              :undef => :replace, 
+              :replace => ''
+            }
             body_text.force_encoding(encoding)
-            return body_text.encode(Encoding::UTF_8, :undef => :replace, :invalid => :replace, :replace => '')
+            body_text = body_text.encode(Encoding::UTF_8, options)
+
+            # If the origin and destination encoding are the same (in this case UTF-8), Ruby 
+            # will ignore the call to encode. Therefore we have to check if the encoding is
+            # valid. If not, convert to an intermediary encoding and then back
+            unless body_text.valid_encoding?
+              body_text = body_text.encode(Encoding::UTF_16, options).encode(Encoding::UTF_8)
+            end
+            return body_text
           end
         end
       end
