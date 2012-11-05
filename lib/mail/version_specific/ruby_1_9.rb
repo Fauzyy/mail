@@ -163,6 +163,9 @@ module Mail
       when /^windows-?(.*)$/
         "Windows-#{$1}"
 
+      when /ks_c_5601-1987/i
+        "EUC-KR"
+
       when '8bit'
         Encoding::ASCII_8BIT
 
