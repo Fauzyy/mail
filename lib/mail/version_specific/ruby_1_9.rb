@@ -105,6 +105,8 @@ module Mail
         when /utf-?(\d{1,2})?(\w{1,2})/i then return "UTF-#{$1}#{$2}".gsub(/\A(UTF-(?:16|32))\z/, '\\1BE')
         # Windows-1252 and alike
         when /Windows-?(.*)/i then return "Windows-#{$1}"
+        # EUC-KR vs KS C 5601:1987
+        when /ks_c_5601-1987/i then return "EUC-KR"
         #more aliases to be added if needed
         else return encoding
       end
